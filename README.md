@@ -6,8 +6,12 @@ A simple implementation of TypeScript / JavaScript EventBus.
 
 Import package:
 
+```shell
+npm i -s @bhznjns/simple-eventbus
+```
+
 ```JavaScript
-import EventBus from "src/index.js"
+import EventBus from "@bhznjns/simple-eventbus"
 
 const eventBus = new EventBus()
 ```
