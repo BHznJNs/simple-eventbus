@@ -1,4 +1,12 @@
 {
     "name": "eventbus-test",
-    "type": "module"
+    "homepage": "https://github.com/BHznJNs/simple-eventbus",
+    "keywords": [
+        "events", "emitter",
+        "eventemitter", "pubsub"
+    ],
+    "type": "module",
+    "devDependencies": {
+        "typescript": "4.8.4"
+    }
 }
