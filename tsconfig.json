@@ -1,0 +1,9 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "ES2015",
+        "module": "ES2015",
+        "removeComments": true,
+        "alwaysStrict": true,
+    }
+}
