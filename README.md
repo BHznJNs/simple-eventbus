@@ -102,3 +102,8 @@ When you removed an event that is unadded
 eventBusDev.off("unadded-event", eventHandler)
 // Warning: unadded event name: "unadded-event"
 ```
+
+## TODO
+
+- Add test codes
+- Type check feature
