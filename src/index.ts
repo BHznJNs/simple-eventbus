@@ -7,19 +7,31 @@ const unknownEventNameError = (name) => {
 export default class EventBus {
     events = new Map<Event, Array<Function>>()
 
-    emit(name: Event, value: any) {
+    /**
+     * @name emit
+     * @description to trigger the handlers for the given event name
+     * @param { String | Symbol } name event name
+     * @param { Array<any> }      args use `...` to support multi-args
+     */
+    emit(name: Event, ...args: Array<any>) {
         const targetEvent: Array<Function> | undefined =
             this.events.get(name)
 
         if (targetEvent) {
-            targetEvent.forEach((func: Function) => {
-                func(value)
+            targetEvent.forEach((handler: Function) => {
+                handler.apply(null, args)
             })
         } else {
             throw new Error(unknownEventNameError(name))
         }
     }
 
+    /**
+     * @name on
+     * @description to add event listener & register the given event handler
+     * @param { String | Symbol } name event name
+     * @param { Function } handler given handler to given event
+     */
     on(name: Event, handler: Function) {
         const targetEvent: Array<Function> | undefined =
             this.events.get(name)
@@ -31,6 +43,12 @@ export default class EventBus {
         }
     }
 
+    /**
+     * @name off
+     * @description remove the given handler to the given event
+     * @param { String | Symbol } name event name
+     * @param { Function } handler given handler to given event
+     */
     off(name: Event, handler: Function) {
         const targetEvent: Array<Function> | undefined =
             this.events.get(name)
