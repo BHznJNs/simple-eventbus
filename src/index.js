@@ -1,19 +1,13 @@
-const unknownEventNameError = (name) => {
-    return "Unknown event name: '" + name + "'";
-};
 export default class EventBus {
     constructor() {
         this.events = new Map();
     }
-    emit(name, value) {
+    emit(name, ...args) {
         const targetEvent = this.events.get(name);
         if (targetEvent) {
-            targetEvent.forEach((func) => {
-                func(value);
+            targetEvent.forEach((handler) => {
+                handler.apply(null, args);
             });
-        }
-        else {
-            throw new Error(unknownEventNameError(name));
         }
     }
     on(name, handler) {
@@ -35,9 +29,6 @@ export default class EventBus {
                 const handlerIndex = targetEvent.indexOf(handler);
                 targetEvent.splice(handlerIndex, 1);
             }
-        }
-        else {
-            throw new Error(unknownEventNameError(name));
         }
     }
 }
