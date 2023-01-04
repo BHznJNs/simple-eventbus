@@ -25,11 +25,14 @@ export default class EventBusDev extends EventBus {
         const currentEventArgNum = args.length - 1;
         if (!targetEvent) {
             console.warn(unaddedEventNameWarning(event));
+            return false;
         }
         if (currentEventArgNum !== targetEventArgNum) {
             console.warn(wrongArgNumWarning(targetEventArgNum, currentEventArgNum));
+            return false;
         }
         super.emit.apply(this, args);
+        return true;
     }
     on(...args) {
         const event = args[0];
@@ -39,12 +42,14 @@ export default class EventBusDev extends EventBus {
         if (targetEvent) {
             if (targetEventArgNum !== currentEventArgNum) {
                 console.warn(wrongArgNumWarning(targetEventArgNum, currentEventArgNum));
+                return false;
             }
         }
         else {
             this.eventsArgNumMap.set(event, currentEventArgNum);
         }
         super.on.apply(this, args);
+        return true;
     }
     off(...args) {
         const event = args[0];
@@ -52,11 +57,14 @@ export default class EventBusDev extends EventBus {
         if (targetEvent) {
             if (targetEvent.indexOf(args[1]) === -1) {
                 console.warn(unaddedEventHandlerWarning(args[1]));
+                return false;
             }
         }
         else {
             console.warn(unaddedEventNameWarning(event));
+            return false;
         }
         super.off.apply(this, args);
+        return true;
     }
 }

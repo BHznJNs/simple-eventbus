@@ -1,6 +1,6 @@
 # simple-eventbus
 
-A simple implementation of TypeScript / JavaScript EventBus.
+A simple implementation of TypeScript / JavaScript EventBus, which has dev version for argument / event checking.
 
 * * *
 
