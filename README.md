@@ -58,7 +58,7 @@ eventBusDev.off("event-name", eventHandler)
 
 * * *
 
-## Error messages for dev version
+## Warning messages for dev version
 
 When you emitted an event that is unadded:
 
@@ -89,18 +89,18 @@ eventBusDev.on("test-event", (data1, data2) => {
 // Warning: expected argument number: 1, actual argument number: 2
 ```
 
-When you removed an event handler that is unadded:
-
-```JavaScript
-eventBusDev.off("event-name", unaddedEventHandler)
-// Warning: unadded event handler: "unaddedEventHandler"
-```
-
 When you removed an event that is unadded
 
 ```JavaScript
 eventBusDev.off("unadded-event", eventHandler)
 // Warning: unadded event name: "unadded-event"
+```
+
+When you removed an event handler that is unadded:
+
+```JavaScript
+eventBusDev.off("event-name", unaddedEventHandler)
+// Warning: unadded event handler: "unaddedEventHandler"
 ```
 
 ## TODO
